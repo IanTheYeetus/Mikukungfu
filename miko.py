@@ -1,4 +1,4 @@
-from easygame.easygame import *
+from easygame import *
 
 open_window('Epic Gamer Fortnite Mikukáš Adventure', 1470, 956)
  
