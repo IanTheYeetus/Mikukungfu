@@ -1,13 +1,13 @@
-from easygame import *
+from easygame.easygame import *
 
 open_window('Epic Gamer Fortnite Mikukáš Adventure', 1470, 956)
  
 # Začni vykreslovať snímky v cykle (v predvolenej rýchlosti 60fps)
 should_quit = False
 while not should_quit:
- fill(1,1,1)
+    fill(1,1,1)
     # Načítaj udalosti pre aktuálnu snímku
-for event in poll_events():
+    for event in poll_events():
         # Napríklad ak hráč spustí CloseEvent
         # prestaň ďalej vykreslovať snímky a zatvor okno 
         if type(event) is CloseEvent:
