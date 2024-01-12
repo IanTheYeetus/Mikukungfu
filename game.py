@@ -54,7 +54,7 @@ while not should_quit:
 
     makeNBlocks(5, 100, 50)
 
-    draw_image(m, (mikox,mikoy), anchor=(32, 32))
+    draw_image(m, position=(mikox,mikoy), anchor=(32, 32))
     draw_text(str(time_falling/150), "arial", 67)
     conditionFloor = eval(strcondF)
 
