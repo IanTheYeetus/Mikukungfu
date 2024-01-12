@@ -10,6 +10,12 @@ strcondF = "(mikoy < 5 and mikoy > -15)"
 strcondC = "False"
 strcondDumpling = "False"
 
+main_background = load_image("assets/General_texture.png")
+main_block = load_image("assets/Object_texture.png")
+ArrayBackrounds = ["assets/General_texture.png", "assets/Background_texture2.png", "assets/Background_texture3.png", "assets/Background_texture4.png"]
+ArrayBlocks = ["assets/Object_texture.png", "assets/Object_texture_2.png", "assets/Object_texture3.png", "assets/Object_texture4.png"]
+
+
 class dumpling:
     def __init__(self, x, y) -> None:
         global strcondDumpling
@@ -24,7 +30,7 @@ class block:
         global strcondC
         self.x = x
         self.y = y
-        self.obj = draw_image(load_image("assets/Object_texture.png"), (x, y), pixelated=True, anchor=(0,0))
+        self.obj = draw_image(main_block, (x, y), pixelated=True, anchor=(0,0))
         strcondF += " or ((mikoy < " + str(y + 64 + 5) + " and mikoy > " + str(y + 64 -5) + ") and mikox > " + str(x-32) + " and mikox <" + str(x + 32) + ")"
         strcondC += " or ((mikoy < " + str(y+64-5) + " and mikoy > " + str(y-64) + ") and mikox > " + str(x-32) + " and mikox <" + str(x + 32) + ")"
         if ((noise([self.x/resx, self.y/resy])) > 0.2):
@@ -72,8 +78,10 @@ a2 = []
 a3 = []
 a4 = []
 
+
+
 def genLevel():
-    global seed, strcondF, strcondC, strcondDumpling
+    global seed, strcondF, strcondC, strcondDumpling, main_background, main_block, ArrayBackrounds, ArrayBlocks
     strcondF = "(mikoy < 5 and mikoy > -15)"
     strcondC = "False"
     strcondDumpling = "False"
@@ -85,6 +93,9 @@ def genLevel():
     a2 = []
     a3 = []
     a4 = []
+    main_block = load_image(ArrayBlocks[random.randint(0,3)])
+    main_background = load_image(ArrayBackrounds[random.randint(0,3)])
+
     while mn < rnd:
         a1.append(random.randint(2, 9))
         a4.append(random.randint(0, 1))
@@ -104,7 +115,6 @@ def mikoMovement():
         mikoy -= 1
 
 m = load_image("assets/character.png")
-main_background = load_image("assets/General_texture.png")
 should_quit = False
 
 genLevel()
