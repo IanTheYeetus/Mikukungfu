@@ -55,7 +55,7 @@ while not should_quit:
     strcondF = "(mikoy < 5 and mikoy > -5)"
     strcondC = "False"
     
-    makeNBlocks(5, 100, 50)
+    makeNBlocks(5, 100, 150)
 
     draw_image(m, position=(mikox,mikoy))
     draw_text(str(time_falling/150), "arial", 67)
