@@ -15,6 +15,13 @@ class block:
         strcondF += " or ((mikoy < " + str(y + 64 + 5) + " and mikoy > " + str(y + 64 -5) + ") and mikox > " + str(x) + " and mikox <" + str(x + 64) + ")"
         strcondC += " or ((mikoy < " + str(y-64+5) + " and mikoy > " + str(y-64-5) + ") and mikox > " + str(x) + " and mikox <" + str(x + 64) + ")"
 def makeNBlocks(n, start_x=0, start_y=0):
+    """_summary_
+
+    Args:
+        n (int): number of blocks in a row
+        start_x (int, optional): from where to start drawing X
+        start_y (int, optional): from when to start drawing Y
+    """
     i = 0
     while i < n*64:
         block(start_x + (i), start_y)
