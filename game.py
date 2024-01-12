@@ -1,7 +1,10 @@
 from easygame import *
 from funkcie import *
+from perlin_noise import PerlinNoise
 import time
 import random
+
+noise = PerlinNoise()
 
 strcondF = "(mikoy < 5 and mikoy > -5)"
 strcondC = "False"
@@ -21,7 +24,7 @@ class block:
         self.obj = draw_image(load_image("assets/Object_texture.png"), (x, y), pixelated=True, anchor=(0,0))
         strcondF += " or ((mikoy < " + str(y + 64 + 5) + " and mikoy > " + str(y + 64 -5) + ") and mikox > " + str(x) + " and mikox <" + str(x + 64) + ")"
         strcondC += " or ((mikoy < " + str(y+5) + " and mikoy > " + str(y-64-5) + ") and mikox > " + str(x) + " and mikox <" + str(x + 64) + ")"
-        if (random.randint(1, 100) > 70 ):
+        if ((noise(self.x*self.y)) > -1):
             dumpling(x+16, y+64)
             
         
@@ -92,8 +95,6 @@ while not should_quit:
     strcondF = "(mikoy < 5 and mikoy > -5)"
     strcondC = "False"
     
-    makeNBlocks(6, 150, 65)
-    makeNBlocks(10, 700, 200)
     yi = 0
     while yi < rnd:
         makeNBlocks(a1[yi], a2[yi], a3[yi])
@@ -102,7 +103,7 @@ while not should_quit:
     #makeNBlocks(5, 65, 65)
 
     draw_image(m, position=(mikox,mikoy), anchor=(32, 0))
-    draw_text(str(time_falling/150), "arial", 67)
+    draw_text(str(noise(mikox)), "arial", 67)
     conditionFloor = eval(strcondF)
     conditionCeiling = eval(strcondC)
 
