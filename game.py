@@ -31,9 +31,9 @@ main_background = load_image("assets/General_texture.png")
 
 should_quit = False
 while not should_quit:
-    # fill(0.45, 0.9, 1)
+    fill(0.45, 0.9, 1)
     draw_image(m, (mikox,mikoy))
-    draw_image(main_background, (resxdiv2, resydiv2), rotation=0, scale=100, pixelated=True)
+    draw_image(main_background, (400, 400), rotation=0, scale=10, pixelated=True)
 
     for event in poll_events():
         if type(event) is KeyDownEvent:
