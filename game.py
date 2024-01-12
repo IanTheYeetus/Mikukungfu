@@ -99,8 +99,8 @@ def genLevel():
     while mn < rnd:
         a1.append(random.randint(2, 9))
         a4.append(random.randint(0, 1))
-        a2.append(random.randint(0, resx/128))
-        a3.append(random.randint(1, ((resy)/128)))
+        a2.append(random.randint(0, 14))
+        a3.append(random.randint(1, 7))
         mn += 1
 
 def mikoMovement():
