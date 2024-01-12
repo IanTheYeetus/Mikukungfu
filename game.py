@@ -3,16 +3,17 @@ from funkcie import *
 from perlin_noise import PerlinNoise
 import random
 
+bodiky = 0
 seed = 1
 noise = PerlinNoise(octaves=1000, seed=seed)
 
-strcondF = "(mikoy < 5 and mikoy > -15)"
+strcondF = "(mikoy < 64 and mikoy > 0)"
 strcondC = "False"
 strcondDumpling = "False"
 
 main_background = load_image("assets/General_texture.png")
 main_block = load_image("assets/Object_texture.png")
-ArrayBackrounds = ["assets/General_texture.png", "assets/Background_texture2.png", "assets/Background_texture3.png", "assets/Background_texture4.png"]
+ArrayBackrounds = ["assets/General_texture.png", "assets/Background_texture2.png", "assets/Background_texture3.png", "assets/Background_texture4.png", "assets/macker.png"]
 ArrayBlocks = ["assets/Object_texture.png", "assets/Object_texture_2.png", "assets/Object_texture3.png", "assets/Object_texture4.png"]
 
 
@@ -32,7 +33,7 @@ class block:
         self.y = y
         self.obj = draw_image(main_block, (x, y), pixelated=True, anchor=(0,0))
         strcondF += " or ((mikoy < " + str(y + 64 + 5) + " and mikoy > " + str(y + 64 -5) + ") and mikox > " + str(x-32) + " and mikox <" + str(x + 32) + ")"
-        strcondC += " or ((mikoy < " + str(y+64-5) + " and mikoy > " + str(y-60) + ") and mikox > " + str(x-32) + " and mikox <" + str(x + 32) + ")"
+        strcondC += " or ((mikoy < " + str(y+64-5) + " and mikoy > " + str(y-59) + ") and mikox > " + str(x-32) + " and mikox <" + str(x + 32) + ")"
         if ((noise([self.x/resx, self.y/resy])) > 0.2):
             dumpling(x+16, y+64)
             
@@ -59,7 +60,7 @@ def makeNBlocks(n, start_x=0, start_y=0, dir=0):
             i += 64
 
 mikox = 0
-mikoy= 0
+mikoy= 64
 xdir = "0"
 ydir = "0"
 resx = 1792
@@ -80,7 +81,7 @@ a4 = []
 
 def genLevel():
     global seed, strcondF, strcondC, strcondDumpling, main_background, main_block, ArrayBackrounds, ArrayBlocks
-    strcondF = "(mikoy < 5 and mikoy > -15)"
+    strcondF = "(mikoy < 64 and mikoy > 0)"
     strcondC = "False"
     strcondDumpling = "False"
     seed += 1
@@ -120,7 +121,7 @@ genLevel()
 while not should_quit:
     draw_image(main_background, (0, 0), anchor=(0, 0), rotation=0, scale=10, pixelated=True)
 
-    strcondF = "(mikoy < 5 and mikoy > -15)"
+    strcondF = "(mikoy < 64 and mikoy > 0)"
     strcondC = "False"
     strcondDumpling = "False"
     
@@ -128,7 +129,10 @@ while not should_quit:
     while yi < rnd:
         makeNBlocks(a1[yi], a2[yi]*128, a3[yi]*128, a4[yi])
         yi += 1
-        
+    floortiling = 0
+    while floortiling < resx:
+        draw_image(main_block, (floortiling, 0), pixelated=True, anchor=(0,0))
+        floortiling += 64
 
     draw_image(m, position=(mikox,mikoy), anchor=(32, 0))
     ##draw_text(str(noise(mikox/resx)), "arial", 67)
@@ -162,15 +166,17 @@ while not should_quit:
             if (event.key == 'B'):
                 print((strcondDumpling))
             if (event.key == 'O'):
+                bodiky -= 1
                 genLevel()
         if type(event) is CloseEvent:
             should_quit = True
 
     if eval(strcondDumpling):
+        bodiky += 1
         genLevel()
         
     mikoMovement()
-
+    draw_text(text="Body: "+str(bodiky), font="times_new_roman", size=60, position=(resx-340, resy-80), anchor=("left", "bottom"), color = (13/255, 234/255, 255/255, 1), bold=True, ui=True)
     
     next_frame()
  
