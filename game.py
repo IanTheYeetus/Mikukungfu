@@ -3,7 +3,7 @@ import time
 
 
 mikox = 0
-mikoy= 256
+mikoy= 0
 xdir = "0"
 ydir = "0"
 resx = 1800
@@ -33,13 +33,15 @@ should_quit = False
 while not should_quit:
     fill(0.45, 0.9, 1)
     draw_image(main_background, (0, 0), anchor=(0, 0), rotation=0, scale=10, pixelated=True)
-    draw_polygon((100, 100), (100, 200), (600,200), (600, 100), color= (1, 1, 1, 1))
+    p1 = draw_polygon((100, 100), (100, 110), (600,110), (600, 100), color= (1, 1, 1, 1))
     draw_image(m, (mikox,mikoy))
+    draw_text(str(time_falling), "arial", 67)
+    conditionFloor = (mikoy == 0 or (mikoy == 110 and mikox > 100 and mikox < 600))
 
-    if (mikoy > 0):
-        mikoy -= (time_falling/9.81)
+    if not conditionFloor:
+        mikoy -= (time_falling/10)
         time_falling += 1
-    if not mikoy > 0:
+    if conditionFloor:
         time_falling = 0
         ydir = "0"
 
