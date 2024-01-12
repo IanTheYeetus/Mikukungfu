@@ -94,12 +94,12 @@ while not should_quit:
     
     makeNBlocks(6, 150, 65)
     makeNBlocks(10, 700, 200)
-    # yi = 0
-    # while yi < rnd:
-    #     makeNBlocks(a1[yi], a2[yi], a3[yi])
-    #     yi += 1
+    yi = 0
+    while yi < rnd:
+        makeNBlocks(a1[yi], a2[yi], a3[yi])
+        yi += 1
         
-    ##makeNBlocks(5, 65, 65)
+    #makeNBlocks(5, 65, 65)
 
     draw_image(m, position=(mikox,mikoy), anchor=(32, 0))
     draw_text(str(time_falling/150), "arial", 67)
