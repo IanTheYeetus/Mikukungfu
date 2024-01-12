@@ -1,6 +1,7 @@
 from easygame import *
 from funkcie import *
 import time
+import random
 
 strcondF = "(mikoy < 5 and mikoy > -5)"
 strcondC = "False"
@@ -13,7 +14,7 @@ class block:
         self.y = y
         self.obj = draw_image(load_image("assets/Object_texture.png"), (x, y), pixelated=True, anchor=(0,0))
         strcondF += " or ((mikoy < " + str(y + 64 + 5) + " and mikoy > " + str(y + 64 -5) + ") and mikox > " + str(x) + " and mikox <" + str(x + 64) + ")"
-        strcondC += " or ((mikoy < " + str(y-64+5) + " and mikoy > " + str(y-64-5) + ") and mikox > " + str(x) + " and mikox <" + str(x + 64) + ")"
+        strcondC += " or ((mikoy < " + str(y+5) + " and mikoy > " + str(y-64-5) + ") and mikox > " + str(x) + " and mikox <" + str(x + 64) + ")"
 def makeNBlocks(n, start_x=0, start_y=0):
     """_summary_
 
@@ -41,6 +42,17 @@ open_window('Panda simulator', resx, resy)
 
 ##strcondF = ((mikoy < 5 and mikoy > -5) or ((mikoy < 134 + 5 and mikoy > 134-5) and mikox > 100 and mikox < 164))
 
+rnd = random.randint(5, 10)
+a1 = []
+a2 = []
+a3 = []
+
+mn = 0
+while mn < rnd:
+    a1.append(random.randint(2, 12))
+    a2.append(random.randint(0, resx))
+    a3.append(random.randint(0, resy))
+    mn += 1
 
 def mikoMovement():
     global mikox, mikoy
@@ -62,7 +74,12 @@ while not should_quit:
     strcondF = "(mikoy < 5 and mikoy > -5)"
     strcondC = "False"
     
-    makeNBlocks(5, 100, 150)
+    yi = 0
+    while yi < rnd:
+        makeNBlocks(a1[yi], a2[yi], a3[yi])
+        yi += 1
+        
+    ##makeNBlocks(5, 100, 150)
 
     draw_image(m, position=(mikox,mikoy))
     draw_text(str(time_falling/150), "arial", 67)
