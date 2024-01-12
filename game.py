@@ -93,9 +93,9 @@ def genLevel():
     a3 = []
     a4 = []
     main_block = load_image(ArrayBlocks[random.randint(0,3)])
-    if bodiky < 20:
+    if bodiky < 28:
         main_background = load_image(ArrayBackrounds[random.randint(0,3)])
-    elif bodiky >= 20:
+    elif bodiky >= 28:
         main_background = load_image(ArrayBackrounds[4])
 
     while mn < rnd:
