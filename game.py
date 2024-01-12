@@ -6,8 +6,8 @@ mikox = 0
 mikoy= 256
 xdir = "0"
 ydir = "0"
-resx = 1685
-resy = 900
+resx = 1800
+resy = 975
 resxdiv2 = resx/2
 resydiv2 = resy/2
 
@@ -31,9 +31,8 @@ main_background = load_image("assets/General_texture.png")
 should_quit = False
 while not should_quit:
     fill(0.45, 0.9, 1)
-    draw_image(m, (mikox,mikoy))
     draw_image(main_background, (0, 0), anchor=(0, 0), rotation=0, scale=10, pixelated=True)
-
+    draw_image(m, (mikox,mikoy))
 
     if (mikoy > 256):
         mikoy -= (time_falling/9.81)
