@@ -33,10 +33,10 @@ should_quit = False
 while not should_quit:
     fill(0.45, 0.9, 1)
     draw_image(main_background, (0, 0), anchor=(0, 0), rotation=0, scale=10, pixelated=True)
-    p1 = draw_image(load_image("assets/Object_texture.png"), (100, 100), pixelated=True)
+    p1 = draw_image(load_image("assets/Object_texture.png"), (100, 70), pixelated=True)
     draw_image(m, (mikox,mikoy))
     draw_text(str(time_falling/150), "arial", 67)
-    conditionFloor = ((mikoy < 5 and mikoy > -5) or ((mikoy < 110 + 5 and mikoy > 110-5) and mikox > 100 and mikox < 600) or )
+    conditionFloor = ((mikoy < 5 and mikoy > -5) or ((mikoy < 134 + 5 and mikoy > 134-5) and mikox > 100 and mikox < 164))
 
     if not conditionFloor:
         mikoy -= ((time_falling/100)*9.81)
