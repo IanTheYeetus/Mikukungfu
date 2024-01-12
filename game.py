@@ -73,7 +73,7 @@ def genLevel():
     global seed
     seed += 1
     mn = 0
-    global a1, a2, a3, rnd
+    global a1, a2, a3, a4, rnd
     rnd = random.randint(5, 10)
     a1 = []
     a2 = []
@@ -125,9 +125,11 @@ while not should_quit:
         time_falling += 1
     if conditionCeiling:
         ydir = "-"
+        xdir = "0"
     if conditionFloor:
         time_falling = 0
         ydir = "0"
+
 
     for event in poll_events():
         if type(event) is KeyDownEvent:
@@ -143,7 +145,7 @@ while not should_quit:
             if (event.key == 'D'):
                 xdir = "0"
             if (event.key == 'B'):
-                print(str(a4))
+                print((a4))
             if (event.key == 'O'):
                 genLevel()
         if type(event) is CloseEvent:
