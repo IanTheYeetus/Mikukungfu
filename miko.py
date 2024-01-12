@@ -1,6 +1,10 @@
 from easygame import *
+import math
 
-open_window('Epic Gamer Fortnite Mikukáš Adventure', 1470, 956)
+res_x = 1470
+res_y = 956
+
+open_window('Epic Gamer Fortnite Mikukáš Adventure', res_x, res_y)
  
 # Začni vykreslovať snímky v cykle (v predvolenej rýchlosti 60fps)
 should_quit = False
@@ -16,6 +20,8 @@ while not should_quit:
     # Tu patrí logika hry, ktorá na obrazovku niečo vykreslí
     
     draw_text("Fortnite", 'Times New Roman', 50, (200, 200))
+    test_image = load_image("General_texture.png")
+    draw_image(test_image, (res_x/2, res_y/2), None, 0, 1, math.ceil(res_x/255), math.ceil(res_y/255))
     ###
  
     # Pokračuj na ďalšiu snímku (a všetko opať prekresli)
