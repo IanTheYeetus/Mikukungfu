@@ -8,12 +8,15 @@ noise = PerlinNoise(octaves=1000, seed=seed)
 
 strcondF = "(mikoy < 5 and mikoy > -15)"
 strcondC = "False"
+strcondDumpling = "False"
 
 class dumpling:
     def __init__(self, x, y) -> None:
+        global strcondDumpling
         self.x = x
         self.y = y
         self.obj = draw_image(load_image("assets/dump.png"), (x, y), pixelated=True, anchor=(0,0))
+        strcondDumpling += " or (mikox < " + str(x+5) + " and mikox > " + str(x-5) + " and mikoy < " + str(y+5) + " and mikoy > " + str(y-5) + ")"
 
 class block:
     def __init__(self, x, y) -> None:
@@ -70,7 +73,10 @@ a3 = []
 a4 = []
 
 def genLevel():
-    global seed
+    global seed, strcondF, strcondC, strcondDumpling
+    strcondF = "(mikoy < 5 and mikoy > -15)"
+    strcondC = "False"
+    strcondDumpling = "False"
     seed += 1
     mn = 0
     global a1, a2, a3, a4, rnd
@@ -108,6 +114,7 @@ while not should_quit:
 
     strcondF = "(mikoy < 5 and mikoy > -15)"
     strcondC = "False"
+    strcondDumpling = "False"
     
     yi = 0
     while yi < rnd:
@@ -116,7 +123,7 @@ while not should_quit:
         
 
     draw_image(m, position=(mikox,mikoy), anchor=(32, 0))
-    draw_text(str(noise(mikox/resx)), "arial", 67)
+    ##draw_text(str(noise(mikox/resx)), "arial", 67)
     conditionFloor = eval(strcondF)
     conditionCeiling = eval(strcondC)
 
@@ -145,11 +152,14 @@ while not should_quit:
             if (event.key == 'D'):
                 xdir = "0"
             if (event.key == 'B'):
-                print((a4))
+                print((strcondDumpling))
             if (event.key == 'O'):
                 genLevel()
         if type(event) is CloseEvent:
             should_quit = True
+
+    if eval(strcondDumpling):
+        genLevel()
         
     mikoMovement()
 
