@@ -32,12 +32,13 @@ should_quit = False
 while not should_quit:
     fill(0.45, 0.9, 1)
     draw_image(main_background, (0, 0), anchor=(0, 0), rotation=0, scale=10, pixelated=True)
+    draw_polygon((100, 100), (100, 200), (600,200), (600, 100), color= (1, 1, 1, 1))
     draw_image(m, (mikox,mikoy))
 
     if (mikoy > 256):
         mikoy -= (time_falling/9.81)
         time_falling += 1
-    if not mikoy > 256:
+    if not mikoy > 0:
         time_falling = 0
         ydir = "0"
 
