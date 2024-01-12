@@ -70,8 +70,6 @@ time_falling = 0
 
 open_window('Panda simulator', resx, resy)
 
-##strcondF = ((mikoy < 5 and mikoy > -5) or ((mikoy < 134 + 5 and mikoy > 134-5) and mikox > 100 and mikox < 164))
-
 rnd = random.randint(5, 10)
 a1 = []
 a2 = []
