@@ -1,7 +1,7 @@
 from easygame import *
 import time
 
-open_window('Panda simulator', 1620, 928)
+open_window('Panda simulator', 1000, 562)
 
 mikox = 0
 mikoy= 256
@@ -19,14 +19,20 @@ def mikoMovement():
         mikoy += 5
     if (ydir == "-"):
         mikoy -= 1
-
 m = load_image("assets/character.png")
-
 
 should_quit = False
 while not should_quit:
     fill(0.45, 0.9, 1)
     draw_image(m, (mikox,mikoy))
+
+
+    if (mikoy > 256):
+        mikoy -= (time_falling/9.81)
+        time_falling += 1
+    if not mikoy > 256:
+        time_falling = 0
+        ydir = "0"
 
     for event in poll_events():
         if type(event) is KeyDownEvent:
@@ -39,8 +45,6 @@ while not should_quit:
             if (event.key == 'D'):
                 xdir = "+"
         if type(event) is KeyUpEvent:
-            if (event.key == 'W'):
-                ydir = "0"
             if (event.key == 'S'):
                 ydir = "0"
             if (event.key == 'A'):
@@ -52,11 +56,7 @@ while not should_quit:
         ##jak to ide
         
     mikoMovement()
-    if (mikoy > 256):
-        mikoy -= (time_falling/9.81)
-        time_falling += 1
-    if not mikoy > 256:
-        time_falling = 0
+
     
     next_frame()
  
