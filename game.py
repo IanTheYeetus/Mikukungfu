@@ -10,6 +10,7 @@ resx = 1800
 resy = 975
 resxdiv2 = resx/2
 resydiv2 = resy/2
+time_falling = 0
 
 open_window('Panda simulator', resx, resy)
 
@@ -35,7 +36,7 @@ while not should_quit:
     draw_polygon((100, 100), (100, 200), (600,200), (600, 100), color= (1, 1, 1, 1))
     draw_image(m, (mikox,mikoy))
 
-    if (mikoy > 256):
+    if (mikoy > 0):
         mikoy -= (time_falling/9.81)
         time_falling += 1
     if not mikoy > 0:
