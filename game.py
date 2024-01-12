@@ -1,7 +1,6 @@
 from easygame import *
 from funkcie import *
 from perlin_noise import PerlinNoise
-import time
 import random
 
 noise = PerlinNoise(octaves=1000)
@@ -84,10 +83,13 @@ def mikoMovement():
         mikoy += 6
     if (ydir == "-"):
         mikoy -= 1
+
 m = load_image("assets/character.png")
 main_background = load_image("assets/General_texture.png")
 should_quit = False
+
 genLevel()
+
 while not should_quit:
     ##fill(0.45, 0.9, 1)
     draw_image(main_background, (0, 0), anchor=(0, 0), rotation=0, scale=10, pixelated=True)
