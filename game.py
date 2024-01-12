@@ -92,10 +92,12 @@ while not should_quit:
     strcondF = "(mikoy < 5 and mikoy > -5)"
     strcondC = "False"
     
-    yi = 0
-    while yi < rnd:
-        makeNBlocks(a1[yi], a2[yi], a3[yi])
-        yi += 1
+    makeNBlocks(6, 150, 65)
+    makeNBlocks(10, 700, 200)
+    # yi = 0
+    # while yi < rnd:
+    #     makeNBlocks(a1[yi], a2[yi], a3[yi])
+    #     yi += 1
         
     ##makeNBlocks(5, 65, 65)
 
@@ -132,7 +134,6 @@ while not should_quit:
                 genLevel()
         if type(event) is CloseEvent:
             should_quit = True
-        ##jak to ide
         
     mikoMovement()
 
