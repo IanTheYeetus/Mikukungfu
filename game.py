@@ -47,12 +47,18 @@ a1 = []
 a2 = []
 a3 = []
 
-mn = 0
-while mn < rnd:
-    a1.append(random.randint(2, 12))
-    a2.append(random.randint(0, resx))
-    a3.append(random.randint(0, resy))
-    mn += 1
+def genLevel():
+    mn = 0
+    global a1, a2, a3, rnd
+    rnd = random.randint(5, 10)
+    a1 = []
+    a2 = []
+    a3 = []
+    while mn < rnd:
+        a1.append(random.randint(2, 9))
+        a2.append(random.randint(0, resx))
+        a3.append(random.randint(65, resy-65))
+        mn += 1
 
 def mikoMovement():
     global mikox, mikoy
@@ -61,12 +67,13 @@ def mikoMovement():
     if (xdir == "-"):
         mikox -= 3
     if (ydir == "+"):
-        mikoy += 5
+        mikoy += 6
     if (ydir == "-"):
         mikoy -= 1
 m = load_image("assets/character.png")
 main_background = load_image("assets/General_texture.png")
 should_quit = False
+genLevel()
 while not should_quit:
     ##fill(0.45, 0.9, 1)
     draw_image(main_background, (0, 0), anchor=(0, 0), rotation=0, scale=10, pixelated=True)
@@ -81,7 +88,7 @@ while not should_quit:
     #     makeNBlocks(a1[yi], a2[yi], a3[yi])
     #     yi += 1
         
-    ##makeNBlocks(5, 100, 150)
+    ##makeNBlocks(5, 65, 65)
 
     draw_image(m, position=(mikox,mikoy))
     draw_text(str(time_falling/150), "arial", 67)
@@ -112,6 +119,8 @@ while not should_quit:
                 xdir = "0"
             if (event.key == 'B'):
                 print(str(strcondF))
+            if (event.key == 'O'):
+                genLevel()
         if type(event) is CloseEvent:
             should_quit = True
         
