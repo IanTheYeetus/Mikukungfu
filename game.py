@@ -8,6 +8,7 @@ mikoy= 256
 xdir = "0"
 ydir = "0"
 
+
 def mikoMovement():
     global mikox, mikoy
     if (xdir == "+"):
