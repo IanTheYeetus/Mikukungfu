@@ -2,6 +2,21 @@ from easygame import *
 from funkcie import *
 import time
 
+strcondF = "(mikoy < 5 and mikoy > -5)"
+
+class block:
+    def __init__(self, x, y) -> None:
+        global strcondF
+        self.x = x
+        self.y = y
+        self.obj = draw_image(load_image("assets/Object_texture.png"), (x, y), pixelated=True, anchor=(0,0))
+        strcondF += " or ((mikoy < " + str(y + 64 + 5) + " and mikoy > " + str(y + 64 -5) + ") and mikox > " + str(x) + " and mikox <" + str(x + 64) + ")"
+
+def makeNBlocks(n, start_x=0, start_y=0):
+    i = 0
+    while i < n*64:
+        block(start_x + (i), start_y)
+        i += 64
 
 mikox = 0
 mikoy= 0
@@ -32,12 +47,14 @@ m = load_image("assets/character.png")
 main_background = load_image("assets/General_texture.png")
 should_quit = False
 while not should_quit:
-    fill(0.45, 0.9, 1)
+    ##fill(0.45, 0.9, 1)
     draw_image(main_background, (0, 0), anchor=(0, 0), rotation=0, scale=10, pixelated=True)
 
+    strcondF = "(mikoy < 5 and mikoy > -5)"
+
     makeNBlocks(5, 100, 50)
-    
-    draw_image(m, (mikox,mikoy))
+
+    draw_image(m, (mikox,mikoy), anchor=(32, 32))
     draw_text(str(time_falling/150), "arial", 67)
     conditionFloor = eval(strcondF)
 
