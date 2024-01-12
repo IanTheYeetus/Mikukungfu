@@ -3,6 +3,12 @@ import time
 
 open_window('Panda simulator', 1620, 928)
 
+mikox = 0
+mikoy= 256
+xdir = "0"
+ydir = "0"
+
+
 def mikoMovement():
     global mikox, mikoy
     if (xdir == "+"):
