@@ -341,7 +341,7 @@ def close_window():
         raise EasyGameError('window not open')
     _ctx._win.close()
     _ctx._win = None
-
+## Test
 def poll_events():
     """Return a list of events that happened since the last call to this function.
 

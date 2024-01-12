@@ -1,4 +1,2 @@
 # MikukaSim
-Epic Gamer Fortnite Simulator
-
-Najlepšia hra ever frfr
+Kung fu panda simulator

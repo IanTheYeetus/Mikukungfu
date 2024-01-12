@@ -1,24 +1,56 @@
 from easygame import *
- 
-# Otvor okno s nadpisom "Panda simulator"
-# vo veľkosti 800px na šírku a 600px na výšku
-open_window('Panda simulator', 800, 600)
- 
-# Začni vykreslovať snímky v cykle (v predvolenej rýchlosti 60fps)
+import time
+
+open_window('Panda simulator', 1620, 928)
+
+def mikoMovement():
+    global mikox, mikoy
+    if (xdir == "+"):
+        mikox += 1
+    if (xdir == "-"):
+        mikox -= 1
+    if (ydir == "+"):
+        mikoy += 5
+    if (ydir == "-"):
+        mikoy -= 1
+
 should_quit = False
 while not should_quit:
- 
-    # Načítaj udalosti pre aktuálnu snímku
+    fill(0.45, 0.9, 1)
+    m = load_image("assets/New_Piskel.png")
+    draw_image(m, (mikox,mikoy))
+
     for event in poll_events():
-        # Napríklad ak hráč spustí CloseEvent
-        # prestaň ďalej vykreslovať snímky a zatvor okno 
+        if type(event) is KeyDownEvent:
+            if (event.key == 'W'):
+                ydir = "+"
+            if (event.key == 'S'):
+                ydir = "-"
+            if (event.key == 'A'):
+                xdir = "-"
+            if (event.key == 'D'):
+                xdir = "+"
+        if type(event) is KeyUpEvent:
+            if (event.key == 'W'):
+                ydir = "0"
+            if (event.key == 'S'):
+                ydir = "0"
+            if (event.key == 'A'):
+                xdir = "0"
+            if (event.key == 'D'):
+                xdir = "0"
         if type(event) is CloseEvent:
             should_quit = True
-    ###
-    # Tu patrí logika hry, ktorá na obrazovku niečo vykreslí
-    ###
- 
-    # Pokračuj na ďalšiu snímku (a všetko opať prekresli)
+        ##jak to ide
+        
+    mikoMovement()
+    if (mikoy > 256):
+        mikoy -= (time_falling/9.81)
+        time_falling += 1
+    if not mikoy > 256:
+        time_falling = 0
+    
     next_frame()
  
+close_window()
 close_window()
