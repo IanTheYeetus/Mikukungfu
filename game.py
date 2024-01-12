@@ -23,7 +23,7 @@ def mikoMovement():
 should_quit = False
 while not should_quit:
     fill(0.45, 0.9, 1)
-    m = load_image("assets/test.png")
+    m = load_image("assets/character.png")
     draw_image(m, (mikox,mikoy))
 
     for event in poll_events():
