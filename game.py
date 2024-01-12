@@ -23,7 +23,7 @@ mikoy= 0
 xdir = "0"
 ydir = "0"
 resx = 1800
-resy = 975
+resy = 900
 resxdiv2 = resx/2
 resydiv2 = resy/2
 time_falling = 0
@@ -36,9 +36,9 @@ open_window('Panda simulator', resx, resy)
 def mikoMovement():
     global mikox, mikoy
     if (xdir == "+"):
-        mikox += 1
+        mikox += 3
     if (xdir == "-"):
-        mikox -= 1
+        mikox -= 3
     if (ydir == "+"):
         mikoy += 5
     if (ydir == "-"):
@@ -69,15 +69,11 @@ while not should_quit:
         if type(event) is KeyDownEvent:
             if (event.key == 'W'):
                 ydir = "+"
-            if (event.key == 'S'):
-                ydir = "-"
             if (event.key == 'A'):
                 xdir = "-"
             if (event.key == 'D'):
                 xdir = "+"
         if type(event) is KeyUpEvent:
-            if (event.key == 'S'):
-                ydir = "0"
             if (event.key == 'A'):
                 xdir = "0"
             if (event.key == 'D'):
