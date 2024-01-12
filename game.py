@@ -32,7 +32,7 @@ class block:
         self.y = y
         self.obj = draw_image(main_block, (x, y), pixelated=True, anchor=(0,0))
         strcondF += " or ((mikoy < " + str(y + 64 + 5) + " and mikoy > " + str(y + 64 -5) + ") and mikox > " + str(x-32) + " and mikox <" + str(x + 32) + ")"
-        strcondC += " or ((mikoy < " + str(y+64-5) + " and mikoy > " + str(y-64) + ") and mikox > " + str(x-32) + " and mikox <" + str(x + 32) + ")"
+        strcondC += " or ((mikoy < " + str(y+64-5) + " and mikoy > " + str(y-60) + ") and mikox > " + str(x-32) + " and mikox <" + str(x + 32) + ")"
         if ((noise([self.x/resx, self.y/resy])) > 0.2):
             dumpling(x+16, y+64)
             
