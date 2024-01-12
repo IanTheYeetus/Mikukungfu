@@ -28,7 +28,6 @@ def mikoMovement():
 m = load_image("assets/character.png")
 main_background = load_image("assets/General_texture.png")
 
-
 should_quit = False
 while not should_quit:
     fill(0.45, 0.9, 1)
