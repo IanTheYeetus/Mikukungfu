@@ -1,13 +1,18 @@
 from easygame import *
 import time
 
-open_window('Panda simulator', 1000, 562)
+open_window('Panda simulator', 1620, 928)
 
 mikox = 0
 mikoy= 256
 xdir = "0"
 ydir = "0"
+resx = 1620
+resy = 928
+resxdiv2 = resx/2
+resydiv2 = resy/2
 
+open_window('Panda simulator', resx, resy)
 
 def mikoMovement():
     global mikox, mikoy
@@ -21,10 +26,12 @@ def mikoMovement():
         mikoy -= 1
 m = load_image("assets/character.png")
 
+
 should_quit = False
 while not should_quit:
     fill(0.45, 0.9, 1)
     draw_image(m, (mikox,mikoy))
+    draw_image(main_background, (400, 400), rotation=0, scale=10, pixelated=True)
 
 
     if (mikoy > 256):
