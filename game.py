@@ -6,6 +6,12 @@ import random
 strcondF = "(mikoy < 5 and mikoy > -5)"
 strcondC = "False"
 
+class dumpling:
+    def __init__(self, x, y) -> None:
+        self.x = x
+        self.y = y
+        self.obj = draw_image(load_image("assets/dump.png"), (x, y), pixelated=True, anchor=(0,0))
+
 class block:
     def __init__(self, x, y) -> None:
         global strcondF
@@ -15,6 +21,11 @@ class block:
         self.obj = draw_image(load_image("assets/Object_texture.png"), (x, y), pixelated=True, anchor=(0,0))
         strcondF += " or ((mikoy < " + str(y + 64 + 5) + " and mikoy > " + str(y + 64 -5) + ") and mikox > " + str(x) + " and mikox <" + str(x + 64) + ")"
         strcondC += " or ((mikoy < " + str(y+5) + " and mikoy > " + str(y-64-5) + ") and mikox > " + str(x) + " and mikox <" + str(x + 64) + ")"
+        if (random.randint(1, 100) > 70 ):
+            dumpling(x+16, y+64)
+            
+        
+
 def makeNBlocks(n, start_x=0, start_y=0):
     """_summary_
 
@@ -88,7 +99,7 @@ while not should_quit:
         
     ##makeNBlocks(5, 65, 65)
 
-    draw_image(m, position=(mikox,mikoy))
+    draw_image(m, position=(mikox,mikoy), anchor=(32, 0))
     draw_text(str(time_falling/150), "arial", 67)
     conditionFloor = eval(strcondF)
     conditionCeiling = eval(strcondC)
