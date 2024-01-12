@@ -32,7 +32,7 @@ class block:
         self.x = x
         self.y = y
         self.obj = draw_image(main_block, (x, y), pixelated=True, anchor=(0,0))
-        strcondF += " or ((mikoy < " + str(y + 64 + 5) + " and mikoy > " + str(y + 64 -5) + ") and mikox > " + str(x-32) + " and mikox <" + str(x + 32) + ")"
+        strcondF += " or ((mikoy < " + str(y + 64 + 5) + " and mikoy > " + str(y + 64 -15) + ") and mikox > " + str(x-32) + " and mikox <" + str(x + 32) + ")"
         strcondC += " or ((mikoy < " + str(y+64-5) + " and mikoy > " + str(y-59) + ") and mikox > " + str(x-32) + " and mikox <" + str(x + 32) + ")"
         if ((noise([self.x/resx, self.y/resy])) > 0.2):
             dumpling(x+16, y+64)
@@ -93,7 +93,10 @@ def genLevel():
     a3 = []
     a4 = []
     main_block = load_image(ArrayBlocks[random.randint(0,3)])
-    main_background = load_image(ArrayBackrounds[random.randint(0,3)])
+    if bodiky < 20:
+        main_background = load_image(ArrayBackrounds[random.randint(0,3)])
+    elif bodiky >= 20:
+        main_background = load_image(ArrayBackrounds[4])
 
     while mn < rnd:
         a1.append(random.randint(2, 9))
@@ -168,11 +171,13 @@ while not should_quit:
             if (event.key == 'O'):
                 bodiky -= 1
                 genLevel()
+            if (event.key == 'C'):
+                bodiky += 1
         if type(event) is CloseEvent:
             should_quit = True
 
     if eval(strcondDumpling):
-        bodiky += 1
+        bodiky += 3
         genLevel()
         
     mikoMovement()
