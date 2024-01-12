@@ -19,7 +19,7 @@ while not should_quit:
         # prestaň ďalej vykreslovať snímky a zatvor okno 
         if type(event) is CloseEvent:
             should_quit = True
-
+    
     
     draw_text("Fortnite", 'Times New Roman', 50, (200, 200))
     draw_image(character, (res_x/2, res_y/2), None, 0, 3)
