@@ -1,3 +1,13 @@
+from easygame import *
+import time
+
+open_window('Panda simulator', 1620, 928)
+
+def mikoMovement():
+    global mikox, mikoy
+    if (xdir == "+"):
+        mikox += 1
+    if (xdir == "-"):
         mikox -= 1
     if (ydir == "+"):
         mikoy += 5
