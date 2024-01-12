@@ -29,18 +29,25 @@ class block:
             
         
 
-def makeNBlocks(n, start_x=0, start_y=0):
+def makeNBlocks(n, start_x=0, start_y=0, dir=0):
     """_summary_
 
     Args:
         n (int): number of blocks in a row
         start_x (int, optional): from where to start drawing X
         start_y (int, optional): from when to start drawing Y
+        dir (int 0, 1): horizontal or vertical. Horizontal by default
     """
-    i = 0
-    while i < n*64:
-        block(start_x + (i), start_y)
-        i += 64
+    if (dir == 0):
+        i = 0
+        while i < n*64:
+            block(start_x + (i), start_y)
+            i += 64
+    elif (dir == 1):
+        i = 0
+        while i < n*64:
+            block(start_x, start_y + (i))
+            i += 64
 
 mikox = 0
 mikoy= 0
@@ -60,6 +67,7 @@ rnd = random.randint(5, 10)
 a1 = []
 a2 = []
 a3 = []
+a4 = []
 
 def genLevel():
     global seed
@@ -70,8 +78,10 @@ def genLevel():
     a1 = []
     a2 = []
     a3 = []
+    a4 = []
     while mn < rnd:
         a1.append(random.randint(2, 9))
+        a4.append(random.randint(0, 1))
         a2.append(random.randint(0, resx/128))
         a3.append(random.randint(1, ((resy)/128)))
         mn += 1
@@ -101,7 +111,7 @@ while not should_quit:
     
     yi = 0
     while yi < rnd:
-        makeNBlocks(a1[yi], a2[yi]*128, a3[yi]*128)
+        makeNBlocks(a1[yi], a2[yi]*128, a3[yi]*128, a4[yi])
         yi += 1
         
 
@@ -113,11 +123,11 @@ while not should_quit:
     if not conditionFloor:
         mikoy -= ((time_falling/100)*9.81)
         time_falling += 1
+    if conditionCeiling:
+        ydir = "-"
     if conditionFloor:
         time_falling = 0
         ydir = "0"
-    if conditionCeiling:
-        ydir = "-"
 
     for event in poll_events():
         if type(event) is KeyDownEvent:
@@ -133,7 +143,7 @@ while not should_quit:
             if (event.key == 'D'):
                 xdir = "0"
             if (event.key == 'B'):
-                print(str(strcondF))
+                print(str(a4))
             if (event.key == 'O'):
                 genLevel()
         if type(event) is CloseEvent:
