@@ -3,9 +3,10 @@ from funkcie import *
 from perlin_noise import PerlinNoise
 import random
 
-noise = PerlinNoise(octaves=1000)
+seed = 0
+noise = PerlinNoise(octaves=1000, seed=seed)
 
-strcondF = "(mikoy < 5 and mikoy > -5)"
+strcondF = "(mikoy < 5 and mikoy > -15)"
 strcondC = "False"
 
 class dumpling:
@@ -21,8 +22,8 @@ class block:
         self.x = x
         self.y = y
         self.obj = draw_image(load_image("assets/Object_texture.png"), (x, y), pixelated=True, anchor=(0,0))
-        strcondF += " or ((mikoy < " + str(y + 64 + 5) + " and mikoy > " + str(y + 64 -5) + ") and mikox > " + str(x) + " and mikox <" + str(x + 64) + ")"
-        strcondC += " or ((mikoy < " + str(y+5) + " and mikoy > " + str(y-64-5) + ") and mikox > " + str(x) + " and mikox <" + str(x + 64) + ")"
+        strcondF += " or ((mikoy < " + str(y + 64 + 5) + " and mikoy > " + str(y + 64 -5) + ") and mikox > " + str(x-32) + " and mikox <" + str(x + 32) + ")"
+        strcondC += " or ((mikoy < " + str(y+64-5) + " and mikoy > " + str(y-64) + ") and mikox > " + str(x-32) + " and mikox <" + str(x + 32) + ")"
         if ((noise([self.x/resx, self.y/resy])) > 0.2):
             dumpling(x+16, y+64)
             
@@ -45,8 +46,8 @@ mikox = 0
 mikoy= 0
 xdir = "0"
 ydir = "0"
-resx = 1800
-resy = 900
+resx = 1792
+resy = 896
 resxdiv2 = resx/2
 resydiv2 = resy/2
 time_falling = 0
@@ -61,6 +62,8 @@ a2 = []
 a3 = []
 
 def genLevel():
+    global seed
+    seed += 1
     mn = 0
     global a1, a2, a3, rnd
     rnd = random.randint(5, 10)
@@ -69,8 +72,8 @@ def genLevel():
     a3 = []
     while mn < rnd:
         a1.append(random.randint(2, 9))
-        a2.append(random.randint(0, resx))
-        a3.append(random.randint(65, resy-65))
+        a2.append(random.randint(0, resx/128))
+        a3.append(random.randint(1, ((resy)/128)))
         mn += 1
 
 def mikoMovement():
@@ -80,7 +83,7 @@ def mikoMovement():
     if (xdir == "-"):
         mikox -= 3
     if (ydir == "+"):
-        mikoy += 6
+        mikoy += 6.5
     if (ydir == "-"):
         mikoy -= 1
 
@@ -91,18 +94,16 @@ should_quit = False
 genLevel()
 
 while not should_quit:
-    ##fill(0.45, 0.9, 1)
     draw_image(main_background, (0, 0), anchor=(0, 0), rotation=0, scale=10, pixelated=True)
 
-    strcondF = "(mikoy < 5 and mikoy > -5)"
+    strcondF = "(mikoy < 5 and mikoy > -15)"
     strcondC = "False"
     
     yi = 0
     while yi < rnd:
-        makeNBlocks(a1[yi], a2[yi], a3[yi])
+        makeNBlocks(a1[yi], a2[yi]*128, a3[yi]*128)
         yi += 1
         
-    #makeNBlocks(5, 65, 65)
 
     draw_image(m, position=(mikox,mikoy), anchor=(32, 0))
     draw_text(str(noise(mikox/resx)), "arial", 67)
