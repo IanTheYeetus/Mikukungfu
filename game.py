@@ -39,7 +39,7 @@ while not should_quit:
     conditionFloor = ((mikoy < 5 and mikoy > -5) or ((mikoy < 110 + 5 and mikoy > 110-5) and mikox > 100 and mikox < 600))
 
     if not conditionFloor:
-        mikoy -= ((time_falling/150)*9.81)
+        mikoy -= ((time_falling/100)*9.81)
         time_falling += 1
     if conditionFloor:
         time_falling = 0
