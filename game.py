@@ -1,7 +1,6 @@
 from easygame import *
 import time
 
-open_window('Panda simulator', 1620, 928)
 
 mikox = 0
 mikoy= 256
@@ -14,6 +13,7 @@ resydiv2 = resy/2
 
 open_window('Panda simulator', resx, resy)
 
+
 def mikoMovement():
     global mikox, mikoy
     if (xdir == "+"):
@@ -25,6 +25,7 @@ def mikoMovement():
     if (ydir == "-"):
         mikoy -= 1
 m = load_image("assets/character.png")
+main_background = load_image("assets/General_texture.png")
 
 
 should_quit = False
@@ -67,5 +68,4 @@ while not should_quit:
     
     next_frame()
  
-close_window()
 close_window()
