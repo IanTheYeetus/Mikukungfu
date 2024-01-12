@@ -4,7 +4,7 @@ from perlin_noise import PerlinNoise
 import time
 import random
 
-noise = PerlinNoise()
+noise = PerlinNoise(octaves=1000)
 
 strcondF = "(mikoy < 5 and mikoy > -5)"
 strcondC = "False"
@@ -24,7 +24,7 @@ class block:
         self.obj = draw_image(load_image("assets/Object_texture.png"), (x, y), pixelated=True, anchor=(0,0))
         strcondF += " or ((mikoy < " + str(y + 64 + 5) + " and mikoy > " + str(y + 64 -5) + ") and mikox > " + str(x) + " and mikox <" + str(x + 64) + ")"
         strcondC += " or ((mikoy < " + str(y+5) + " and mikoy > " + str(y-64-5) + ") and mikox > " + str(x) + " and mikox <" + str(x + 64) + ")"
-        if ((noise(self.x*self.y)) > -1):
+        if ((noise([self.x/resx, self.y/resy])) > 0.2):
             dumpling(x+16, y+64)
             
         
@@ -103,7 +103,7 @@ while not should_quit:
     #makeNBlocks(5, 65, 65)
 
     draw_image(m, position=(mikox,mikoy), anchor=(32, 0))
-    draw_text(str(noise(mikox)), "arial", 67)
+    draw_text(str(noise(mikox/resx)), "arial", 67)
     conditionFloor = eval(strcondF)
     conditionCeiling = eval(strcondC)
 
