@@ -6,8 +6,8 @@ mikox = 0
 mikoy= 256
 xdir = "0"
 ydir = "0"
-resx = 1620
-resy = 928
+resx = 1685
+resy = 900
 resxdiv2 = resx/2
 resydiv2 = resy/2
 
