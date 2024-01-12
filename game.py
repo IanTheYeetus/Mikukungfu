@@ -3,7 +3,7 @@ from funkcie import *
 from perlin_noise import PerlinNoise
 import random
 
-seed = 0
+seed = 1
 noise = PerlinNoise(octaves=1000, seed=seed)
 
 strcondF = "(mikoy < 5 and mikoy > -15)"
