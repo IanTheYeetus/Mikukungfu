@@ -87,7 +87,7 @@ def genLevel():
     seed += 1
     mn = 0
     global a1, a2, a3, a4, rnd
-    rnd = random.randint(5, 10)
+    rnd = random.randint(5, 15)
     a1 = []
     a2 = []
     a3 = []
