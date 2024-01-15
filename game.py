@@ -34,7 +34,7 @@ class block:
         self.obj = draw_image(main_block, (x, y), pixelated=True, anchor=(0,0))
         strcondF += " or ((mikoy < " + str(y + 64 + 5) + " and mikoy > " + str(y + 64 -15) + ") and mikox > " + str(x-32) + " and mikox <" + str(x + 32) + ")"
         strcondC += " or ((mikoy < " + str(y+64-5) + " and mikoy > " + str(y-59) + ") and mikox > " + str(x-32) + " and mikox <" + str(x + 32) + ")"
-        if ((noise([self.x/resx, self.y/resy])) > 0.2):
+        if ((noise([self.x/resx, self.y/resy])) > 0.25):
             dumpling(x+16, y+64)
             
         
@@ -177,8 +177,8 @@ while not should_quit:
             should_quit = True
 
     if eval(strcondDumpling):
-        bodiky += 3
         genLevel()
+        bodiky += 1
         
     mikoMovement()
     draw_text(text="Body: "+str(bodiky), font="times_new_roman", size=60, position=(resx-340, resy-80), anchor=("left", "bottom"), color = (13/255, 234/255, 255/255, 1), bold=True, ui=True)
